@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from NotesServiceService WSDL service -->
+
+  <service name="NotesService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.web.heightsre"/>
+      <parameter name="wsdlServiceElement" value="NotesServiceService"/>
+      <parameter name="schemaQualified" value="http://service.web.heightsre"/>
+      <parameter name="wsdlServicePort" value="NotesService"/>
+      <parameter name="className" value="heightsre.web.service.NotesService"/>
+      <parameter name="wsdlPortType" value="NotesService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.web.heightsre" xmlns:retNS="http://service.web.heightsre" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="generateCallWithDbName" qname="operNS:generateCallWithDbName" returnQName="retNS:generateCallWithDbNameReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.web.heightsre" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:options" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.web.heightsre" xmlns:retNS="http://service.web.heightsre" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="newOriginateCall" qname="operNS:newOriginateCall" returnQName="retNS:newOriginateCallReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.web.heightsre" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:options" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.web.heightsre" xmlns:retNS="http://service.web.heightsre" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="generalInterface" qname="operNS:generalInterface" returnQName="retNS:generalInterfaceReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.web.heightsre" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:cmd" type="tns:string"/>
+        <parameter xmlns:pns="http://service.web.heightsre" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:options" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.web.heightsre" name="generateCall" qname="operNS:generateCall" soapAction="">
+        <parameter xmlns:pns="http://service.web.heightsre" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:local" type="tns:string"/>
+        <parameter xmlns:pns="http://service.web.heightsre" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:remote" type="tns:string"/>
+        <parameter xmlns:pns="http://service.web.heightsre" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:CallerID" type="tns:string"/>
+        <parameter xmlns:pns="http://service.web.heightsre" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:DocID" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="generateCallWithDbName generateCall newOriginateCall generalInterface"/>
+
+  </service>
+</deployment>
